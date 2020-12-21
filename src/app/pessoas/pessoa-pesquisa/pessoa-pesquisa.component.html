@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <div class="card">
+
+        <div class="form-group row">
+
+
+          <div class="col-md-4">
+
+            <div class="input-group">
+
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+              </div>
+
+              <input autocomplete="off" type="text" class="form-control" placeholder="Pesquisar por Nome ou CPF" >
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <button type="button" class="btn btn-block btn-outline-dark">
+              <i class="fa fa-plus-circle"></i>Cadastrar</button>
+
+        </div>
+
+
+
+        </div>
+
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Cpf</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pessoa of pessoas">
+                <td>{{ pessoa.id }}</td>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.cpf }}</td>
+                <td>
+                  <div>
+                    <button type="button" class="btn btn-sm btn-block btn-outline-primary"><i class="fa fa-pencil"></i>Editar</button>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <button type="button" class="btn btn-sm btn-block btn-outline-danger"><i class="fa fa-trash"></i> Inativar</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-body align-itens-center">
+          <div class="row align-items-center">
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-xs-12 col-12 col-md-6">
+                  <pagination
+                  [totalItems]="totalRegistros"
+                  [(ngModel)]="filtro.itensPorPagina"
+                  [maxSize]="5"
+                  class="pagination"
+                  previousText="&laquo;"
+                  nextText="&raquo;"
+                  firstText="&lsaquo;"
+                  lastText="&rsaquo;"
+                  [boundaryLinks]="true"
+                  (pageChanged)="pageChanged($event)"></pagination>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-group col-auto">
+              <select class="form-control" (click)="aoMudarPageSize($event)" name="pageSize" [(ngModel)]="size">
+                <option *ngFor="let ps of pageSizes" [value]="ps">{{ ps }}</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
